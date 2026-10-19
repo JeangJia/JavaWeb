@@ -11,6 +11,29 @@
         <result property="age" column="age"/>
         <result property="phone" column="phone"/>
     </resultMap>
+
+    <!--
+        添加用户
+    -->
+    <insert id="addUser" >
+        insert into user (name, age, phone) values
+        (#{name}, #{age}, #{phone});
+    </insert>
+    <!--
+        删除用户
+    -->
+    <delete id="deleteUser">
+        delete from user where id = #{id};
+    </delete>
+    <!--
+        批量删除用户
+    -->
+    <delete id="deleteUsersList">
+        delete from user where id in
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
     <!--
         查询所有用户
     -->
@@ -22,5 +45,20 @@
     -->
     <select id="selectUserById" resultMap="UserResultMap">
         select * from user where id = #{id};
+    </select>
+    <!--
+        筛选符合条件的用户
+    -->
+    <select id="filterUsers" resultMap="UserResultMap">
+        select * from user
+        <where>
+            <if test="name != null and name != ''">
+                <bind name="name" value="'%' + name + '%'"/>
+                name like #{name}
+            </if>
+            <if test="age != null">
+                and age > #{age}
+            </if>
+        </where>
     </select>
 </mapper>
