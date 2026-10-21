@@ -1,5 +1,10 @@
 <html>
 <body>
-<h2>Hello World!</h2>
+<h2>Hello JSP!</h2>
+
+<%
+    System.out.println("Hello JSP!");
+%>
+
 </body>
 </html>
