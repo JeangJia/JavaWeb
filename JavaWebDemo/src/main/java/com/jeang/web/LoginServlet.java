@@ -2,18 +2,16 @@ package com.jeang.web;
 
 import com.jeang.mapper.UserMapper;
 import com.jeang.pojo.User;
+import com.jeang.util.SqlSessionFactoryUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 
 @WebServlet(urlPatterns = "/loginServlet")
@@ -23,9 +21,10 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         // mybatis
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        // String resource = "mybatis-config.xml";
+        // InputStream inputStream = Resources.getResourceAsStream(resource);
+        // SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
         // 从SqlSessionFactory中获取SqlSession
         SqlSession sqlSession = sqlSessionFactory.openSession();
         // 从SqlSession中获取Mapper代理对象
