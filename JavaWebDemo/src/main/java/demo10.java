@@ -2,6 +2,7 @@ import com.alibaba.fastjson.JSON;
 import com.jeang.pojo.User;
 
 public class demo10 {
+    // 测试fastjson库的使用
     public static void main(String[] args) {
         User user = new User(1, "jeang", "123456");
         // 将对象转换为json字符串
