@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-
+// Cookie 测试
 @WebServlet(urlPatterns = "/demo7")
 public class demo7 extends HttpServlet {
     @Override
