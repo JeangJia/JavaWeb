@@ -18,7 +18,6 @@ public class demo6 extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 设置响应类型，指定编码避免中文乱码
         resp.setContentType("text/html;charset=UTF-8");
-
         // 获取字符输出流
         PrintWriter writer = resp.getWriter();
         writer.write("你好demo6...");
