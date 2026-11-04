@@ -25,10 +25,29 @@ public class LoginServlet extends HttpServlet {
             if("true".equals(rememberMe)){
                 Cookie usernameCookie = new Cookie("username", username);
                 Cookie passwordCookie = new Cookie("password", password);
+                Cookie rememberMeCookie = new Cookie("rememberMe", "true");
                 usernameCookie.setMaxAge(60 * 60 * 24 * 7);
                 passwordCookie.setMaxAge(60 * 60 * 24 * 7);
+                rememberMeCookie.setMaxAge(60 * 60 * 24 * 7);
+                usernameCookie.setPath(req.getContextPath());
+                passwordCookie.setPath(req.getContextPath());
+                rememberMeCookie.setPath(req.getContextPath());
                 resp.addCookie(usernameCookie);
                 resp.addCookie(passwordCookie);
+                resp.addCookie(rememberMeCookie);
+            } else {
+                Cookie usernameCookie = new Cookie("username", "");
+                Cookie passwordCookie = new Cookie("password", "");
+                Cookie rememberMeCookie = new Cookie("rememberMe", "");
+                usernameCookie.setMaxAge(0);
+                passwordCookie.setMaxAge(0);
+                rememberMeCookie.setMaxAge(0);
+                usernameCookie.setPath(req.getContextPath());
+                passwordCookie.setPath(req.getContextPath());
+                rememberMeCookie.setPath(req.getContextPath());
+                resp.addCookie(usernameCookie);
+                resp.addCookie(passwordCookie);
+                resp.addCookie(rememberMeCookie);
             }
             HttpSession session = req.getSession();
             // 将用户信息存储到会话中，方便后续请求获取

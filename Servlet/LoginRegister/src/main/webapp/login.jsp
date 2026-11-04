@@ -1,4 +1,35 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.jeang.pojo.User" %>
+<%@ page import="com.jeang.service.UserService" %>
+<%@ page import="jakarta.servlet.http.Cookie" %>
+<%
+    // 已登录或勾选过"记住我"，直接跳转首页
+    User cachedUser = (User) session.getAttribute("user");
+    if (cachedUser == null) {
+        String rememberMe = null, cookieUsername = null, cookiePassword = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                switch (c.getName()) {
+                    case "rememberMe": rememberMe = c.getValue(); break;
+                    case "username": cookieUsername = c.getValue(); break;
+                    case "password": cookiePassword = c.getValue(); break;
+                }
+            }
+        }
+        if ("true".equals(rememberMe) && cookieUsername != null && cookiePassword != null) {
+            User user = new UserService().login(cookieUsername, cookiePassword);
+            if (user != null) {
+                cachedUser = user;
+                session.setAttribute("user", user);
+            }
+        }
+    }
+    if (cachedUser != null) {
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
