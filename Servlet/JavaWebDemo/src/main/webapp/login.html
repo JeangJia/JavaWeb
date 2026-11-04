@@ -69,6 +69,20 @@
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
         }
 
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+        .checkbox-group label {
+            display: inline;
+            margin-bottom: 0;
+        }
+
         /* 登录按钮 */
         .login-btn {
             width: 100%;
@@ -123,7 +137,10 @@
             <label for="password">密码</label>
             <input type="password" id="password" name="password" placeholder="请输入密码" required>
         </div>
-
+        <div class="input-group checkbox-group">
+            <input id="rememberMe" name="rememberMe" type="checkbox">
+            <label for="rememberMe">记住我</label>
+        </div>
         <button type="submit" class="login-btn">登 录</button>
     </form>
 

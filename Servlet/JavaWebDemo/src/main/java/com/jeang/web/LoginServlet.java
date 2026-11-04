@@ -31,7 +31,6 @@ public class LoginServlet extends HttpServlet {
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         User user = userMapper.select(username, password);
         sqlSession.close();
-
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter writer = resp.getWriter();
         if (user != null) {
