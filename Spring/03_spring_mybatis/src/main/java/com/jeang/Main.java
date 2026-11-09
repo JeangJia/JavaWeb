@@ -25,5 +25,7 @@ public class Main {
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         List<User> userList = userMapper.selectAllUsers();
         System.out.println(userList.toString());
+
+        sqlSession.close();
     }
 }
