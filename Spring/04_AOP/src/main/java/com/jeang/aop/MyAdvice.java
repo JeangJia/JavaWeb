@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 public class MyAdvice {
     //    @Pointcut("execution(void com.jeang.dao.BookDao.update())")
     @Pointcut("execution(* com.jeang.dao.BookDao.save())")
-    public void pt() {
+    private void pt() {
     }
-     @Pointcut("execution(int com.jeang.dao.BookDao.update())")
-    public void pt2() {
+
+    @Pointcut("execution(int com.jeang.dao.BookDao.update())")
+    private void pt2() {
     }
 
     @Before("pt()")
@@ -31,6 +32,7 @@ public class MyAdvice {
         pjp.proceed();
         System.out.println("Around after running...");
     }
+
     @Around("pt2()")
     public Object around2(ProceedingJoinPoint pjp) throws Throwable {
         System.out.println("Around2 before running...");
