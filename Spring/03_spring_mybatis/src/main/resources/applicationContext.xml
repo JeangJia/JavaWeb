@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 1. 加载外部属性文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!-- 2. 数据源（Druid 连接池）：交由 Spring 管理连接的创建与释放 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!-- 3. SqlSessionFactoryBean：由 mybatis-spring 提供，
+         整合后由 Spring 创建 SqlSessionFactory，不再需要 mybatis-config.xml -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 实体类别名包扫描，XML 中可直接写 resultType="User" -->
+        <property name="typeAliasesPackage" value="com.jeang.pojo"/>
+    </bean>
+
+    <!-- 4. Mapper 接口扫描：自动为 com.jeang.mapper 下的接口生成代理并注册为 Bean -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.jeang.mapper"/>
+    </bean>
+
+</beans>
