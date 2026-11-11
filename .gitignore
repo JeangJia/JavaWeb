@@ -1,7 +1,40 @@
-.DS_Store
+# ==================== 编译输出 ====================
 target/
+build/
 out/
+bin/
 *.class
 
-# Smart Tomcat 部署时生成的临时配置目录
+# ==================== IntelliJ IDEA ====================
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ==================== Eclipse / STS ====================
+.classpath
+.project
+.settings/
+.factorypath
+.springBeans
+.sts4-cache
+.apt_generated
+
+# ==================== VS Code ====================
+.vscode/
+
+# ==================== Smart Tomcat 临时部署目录 ====================
 .smarttomcat/
+
+# ==================== 日志 / 临时文件 ====================
+*.log
+logs/
+*.tmp
+*.bak
+*.swp
+*~
+
+# ==================== 操作系统 ====================
+.DS_Store
+Thumbs.db
+desktop.ini
