@@ -25,8 +25,26 @@
             <artifactId>spring-webmvc</artifactId>
             <version>6.2.19</version>
         </dependency>
+        <!-- @RequestBody / @ResponseBody 处理 JSON 需要 Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.21.4</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>01_Bean</finalName>
+<!--        <plugins>-->
+<!--            &lt;!&ndash; 开启 -parameters，保留方法参数名，SpringMVC 才能按参数名绑定请求参数 &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <version>3.13.0</version>-->
+<!--                <configuration>-->
+<!--                    <parameters>true</parameters>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
     </build>
 </project>
