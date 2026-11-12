@@ -34,6 +34,14 @@ logs/
 *.swp
 *~
 
+# ==================== 运行期产物（JVM / 部署包） ====================
+*.hprof
+.attach_pid*
+hs_err_pid*.log
+replay_pid*.log
+*.war
+*.ear
+
 # ==================== 操作系统 - macOS ====================
 .DS_Store
 .DS_Store?

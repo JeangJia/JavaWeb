@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class demo1 {
     public static void main(String[] args) throws Exception {
-        Class.forName("com.mysql.jdbc.Driver");
-        String url = "jdbc:mysql:///school";
-        String user = "root";
-        String password = "19001900";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        String url = "jdbc:mysql://localhost:3306/school?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=UTF-8";
+        String user = "jeang";
+        String password = "jeang";
         Connection conn = DriverManager.getConnection(url, user, password);
         String sql = "select * from jiayihang";
         Statement stmt = conn.createStatement();

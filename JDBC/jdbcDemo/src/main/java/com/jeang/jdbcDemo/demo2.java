@@ -6,10 +6,10 @@ import java.util.Scanner;
 public class demo2 {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
-        Class.forName("com.mysql.jdbc.Driver");
-        String url = "jdbc:mysql:///school?useSSL=false";
-        String user = "root";
-        String password = "19001900";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        String url = "jdbc:mysql://localhost:3306/school?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=UTF-8";
+        String user = "jeang";
+        String password = "jeang";
         Connection conn = DriverManager.getConnection(url, user, password);
         while (true) {
             System.out.println("1. Show all items");
