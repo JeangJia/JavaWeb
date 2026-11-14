@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mooctest</groupId>
+    <artifactId>web-testing-competition</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <!-- 严格按照比赛要求：JDK 21 -->
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- 严格按照比赛要求：Selenium 4.49.0 -->
+        <selenium.version>4.49.0</selenium.version>
+
+        <!-- 严格按照比赛要求：JUnit 5.10.0 以上 (这里选 5.10.0) -->
+        <junit.version>5.10.0</junit.version>
+
+        <!-- 辅助工具（自动管理驱动，防止环境问题） -->
+        <webdrivermanager.version>6.3.2</webdrivermanager.version>
+    </properties>
+
+    <dependencies>
+        <!-- 1. Selenium WebDriver (4.49.0) -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 2. JUnit 5 测试框架 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 3. WebDriverManager (可选，但强烈建议) -->
+        <!-- 虽然 Selenium 4 自带 Selenium Manager，但使用 WebDriverManager 在某些断网或特殊环境下更稳定 -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- 编译插件 (支持 Java 21) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>21</release>
+                </configuration>
+            </plugin>
+
+            <!-- Surefire 插件 (运行 JUnit 5 测试) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <!-- 可选：配置测试文件的命名规则 -->
+                    <includes>
+                        <include>**/*Test.java</include>
+                        <include>**/*Tests.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
