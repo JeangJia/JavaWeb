@@ -14,27 +14,36 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public boolean save(@RequestBody User user) {
-        return userService.save(user);
+    public Result save(@RequestBody User user) {
+        boolean flag = userService.save(user);
+        return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag);
     }
 
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Integer id) {
-        return userService.delete(id);
+    public Result delete(@PathVariable("id") Integer id) {
+        boolean flag = userService.delete(id);
+        return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag);
     }
 
     @PutMapping
-    public boolean update(@RequestBody User user) {
-        return userService.update(user);
+    public Result update(@RequestBody User user) {
+        boolean flag = userService.update(user);
+        return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag);
     }
 
     @GetMapping("/{id}")
-    public User getById(@PathVariable Integer id) {
-        return userService.getById(id);
+    public Result getById(@PathVariable("id") Integer id) {
+        User user = userService.getById(id);
+        Integer code = user != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = user != null ? "获取成功" : "获取失败";
+        return new Result(code, user, msg);
     }
 
     @GetMapping
-    public List<User> getAll() {
-        return userService.getAll();
+    public Result getAll() {
+        List<User> users = userService.getAll();
+        Integer code = users != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = users != null ? "获取成功" : "获取失败";
+        return new Result(code, users, msg);
     }
 }
