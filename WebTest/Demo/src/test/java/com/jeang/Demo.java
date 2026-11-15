@@ -15,6 +15,7 @@ public class Demo {
     @BeforeEach
     public void setUp() {
         Path path = Paths.get("C:\\develop\\chromedriver-win64\\chromedriver.exe");
+        path=Paths.get("/Users/jeang/devlop/chromedriver/chromedriver");
         System.setProperty("webdriver.chrome.driver", path.toString());
         //  创建Chrome浏览器实例
         driver = new ChromeDriver();
@@ -24,7 +25,7 @@ public class Demo {
     public void openBaidu() throws InterruptedException {
         driver.get("https://www.baidu.com");
         driver.findElement(By.id("chat-textarea")).sendKeys("java");
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 //        driver.findElement(By.id("chat-submit-button")).click();
         driver.findElement(By.xpath("//*[@id=\"chat-submit-button\"]")).click();
     }
