@@ -16,19 +16,19 @@ public class UserController {
     @PostMapping
     public Result save(@RequestBody User user) {
         boolean flag = userService.save(user);
-        return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag);
+        return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag, flag ? "保存成功" : "保存失败");
     }
 
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable("id") Integer id) {
         boolean flag = userService.delete(id);
-        return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag);
+        return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功" : "删除失败");
     }
 
     @PutMapping
     public Result update(@RequestBody User user) {
         boolean flag = userService.update(user);
-        return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag);
+        return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag, flag ? "更新成功" : "更新失败");
     }
 
     @GetMapping("/{id}")

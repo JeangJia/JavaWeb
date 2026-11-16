@@ -16,20 +16,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean save(User user) {
-        userDao.save(user);
-        return true;
+        return userDao.save(user);
     }
 
     @Override
     public boolean delete(Integer id) {
-        userDao.delete(id);
-        return true;
+        return userDao.delete(id);
     }
 
     @Override
     public boolean update(User user) {
-        userDao.update(user);
-        return true;
+        return userDao.update(user);
     }
 
     @Override
