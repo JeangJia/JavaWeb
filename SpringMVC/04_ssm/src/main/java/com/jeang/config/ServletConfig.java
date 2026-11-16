@@ -1,8 +1,19 @@
 package com.jeang.config;
 
+import jakarta.servlet.Filter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class ServletConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+    @Override
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceRequestEncoding(true);
+        filter.setForceResponseEncoding(true);
+        return new Filter[]{filter};
+    }
 
     @Override
     protected Class<?>[] getRootConfigClasses() {

@@ -11,13 +11,13 @@ public class ProjectExceptionAdvice {
     @ExceptionHandler(SystemException.class)
     // 处理系统异常
     public Result doSystemException(SystemException ex) {
-        return new Result(ex.getCode(), null, ex.getMessage());
+        return new Result(ex.getCode(), null, "系统异常：" + ex.getMessage());
     }
 
     @ExceptionHandler(BusinessException.class)
     // 处理业务异常
     public Result doBusinessException(BusinessException ex) {
-        return new Result(ex.getCode(), null, ex.getMessage());
+        return new Result(ex.getCode(), null, "业务异常：" + ex.getMessage());
     }
 }
 
