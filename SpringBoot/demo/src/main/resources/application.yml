@@ -1,7 +1,25 @@
 server:
   port: 8080
 
-logging:
-  level:
-    com.example.demo: debug
-    root: info
+enter:
+  name: jeang
+  age: 18
+  likes:
+    - basketball
+    - football
+    - swimming
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis
+    username: root
+    password: JeangJia
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.jeang.domain
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
