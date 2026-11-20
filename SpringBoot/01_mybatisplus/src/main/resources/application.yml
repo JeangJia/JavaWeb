@@ -1,0 +1,20 @@
+server:
+  port:
+    8080
+
+spring:
+  # 数据库
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mybatis
+    username: root
+    password: JeangJia
+  main:
+    banner-mode: off
+
+# mp日志
+mybatis-plus:
+  config:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
