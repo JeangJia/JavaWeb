@@ -50,13 +50,22 @@ class ApplicationTests {
 //        通过LambdaQueryWrapper 进行条件查询
         LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
 //        设置查询指定字段其余字段为null
-        System.out.println(lqw.select(User::getId, User::getUsername));
+        System.out.println(lqw.select(User::getId, User::getUser));
+//        范围查询 lt, gt, le, ge, eq, between
 //        lqw.lt(User::getId, 3)
 //                .gt(User::getId, 1);
         lqw.lt(User::getId, 1)
                 .or()
                 .gt(User::getId, 2);
         userDao.selectList(lqw).forEach(System.out::println);
+    }
 
+    @Test
+    void testLambdaQuery1() {
+        LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(User::getUser, "jeang")
+                .eq(User::getPassword, "jeangjia");
+        User user = userDao.selectOne(lqw);
+        System.out.println(user);
     }
 }
