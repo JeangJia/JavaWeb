@@ -3,7 +3,9 @@ package com.jeang;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.jeang.dao.BookDao;
 import com.jeang.dao.UserDao;
+import com.jeang.domain.Book;
 import com.jeang.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ class ApplicationTests {
 
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private BookDao bookDao;
+
 
     @Test
     void testGetAll() {
@@ -67,5 +72,14 @@ class ApplicationTests {
                 .eq(User::getPassword, "jeangjia");
         User user = userDao.selectOne(lqw);
         System.out.println(user);
+    }
+
+    @Test
+    void testBook() {
+        List<Book> books = bookDao.selectList(null);
+        String str = "";
+        for (Book book : books)
+            str += book.getName() + " ==> " + book.getAuthor() + "\n";
+        System.out.println(str);
     }
 }
