@@ -20,7 +20,7 @@ public class UserController {
     @Value("${enter.likes[0]}")
     private String like;
     @Autowired
-    private Environment environment;
+    private Environment env;
     @Autowired
     private Enter enter;
 
@@ -31,8 +31,8 @@ public class UserController {
         System.out.println("name ==>" + name);
         System.out.println("like ==>" + like);
         System.out.println("------------");
-        System.out.println(environment.getProperty("enter.name"));
-        System.out.println(environment.getProperty("enter.likes[0]"));
+        System.out.println(env.getProperty("enter.name"));
+        System.out.println(env.getProperty("enter.likes[0]"));
         System.out.println("------------");
         System.out.println(enter.toString());
         return "success";
